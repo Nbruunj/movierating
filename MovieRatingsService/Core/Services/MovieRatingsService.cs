@@ -37,7 +37,7 @@ namespace MovieRatingsApplication.Core.Services
         public int GetNumberOfReviewsFromReviewer(int reviewer)
         {
             int count = 0;
-            foreach(MovieRating m in RatingsRepository.GetAllMovieRatings())
+            foreach (MovieRating m in RatingsRepository.GetAllMovieRatings())
             {
                 if (m.Reviewer == reviewer)
                 {
@@ -56,9 +56,10 @@ namespace MovieRatingsApplication.Core.Services
             var movie5 = RatingsRepository.GetAllMovieRatings()
                 .Where(r => r.Grade == 5)
                 .GroupBy(r => r.Movie)
-                .Select(group => new { 
+                .Select(group => new
+                {
                     Movie = group.Key,
-                    MovieGrade5 = group.Count() 
+                    MovieGrade5 = group.Count()
                 });
 
             int max5 = movie5.Max(grp => grp.MovieGrade5);
@@ -68,5 +69,148 @@ namespace MovieRatingsApplication.Core.Services
                 .Select(grp => grp.Movie)
                 .ToList();
         }
+        public double GetAverageRateFromReviewer(int reviewer, int grade)
+        {
+            double count = 0;
+            double gcount = 0;
+            double gradeCount = 0;
+            foreach (MovieRating m in RatingsRepository.GetAllMovieRatings())
+            {
+
+                if (m.Reviewer == reviewer)
+                {
+                    count++;
+                }
+
+                if (m.Grade == grade)
+                {
+                    gradeCount = gcount + grade;
+                }
+
+            }
+            return gradeCount / count;
+        }
+
+        public int GetNumberOfRatesByReviewer(int reviewer, int grade)
+        {
+            int count = 0;
+            foreach (MovieRating m in RatingsRepository.GetAllMovieRatings())
+            {
+                if (m.Grade == grade & m.Reviewer == reviewer)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        public int GetNumberOfReviews(int movie)
+        {
+            int count = 0;
+            foreach (MovieRating m in RatingsRepository.GetAllMovieRatings())
+            {
+                if (m.Movie == movie)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        public double GetAverageRateOfMovie(int movie, int grade)
+        {
+            double count = 0;
+            double gcount = 0;
+            double gradeCount = 0;
+            foreach (MovieRating m in RatingsRepository.GetAllMovieRatings())
+            {
+
+                if (m.Movie == movie)
+                {
+                    count++;
+                }
+
+                if (m.Grade == grade)
+                {
+                    gradeCount = gcount + grade;
+                }
+
+            }
+            return gradeCount / count;
+        }
+
+        public int GetNumberOfRates(int movie, int grade)
+        {
+            int count = 0;
+            foreach (MovieRating m in RatingsRepository.GetAllMovieRatings())
+            {
+                if (m.Movie == movie && m.Grade == grade)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        public List<int> GetMostProductiveReviewers()
+        {
+            var reviewer1 = RatingsRepository.GetAllMovieRatings()
+                .Where(r => r.Reviewer == 1)
+                .GroupBy(r => r.Movie)
+                .Select(group => new
+                {
+                    reviewer = group.Key,
+                    Reviewer1 = group.Count()
+                });
+            int max1 = reviewer1.Max(grp => grp.Reviewer1);
+            return reviewer1
+                .Where(grp => grp.Reviewer1 == max1)
+                .Select(grp => grp.reviewer)
+                .ToList();
+        }
+
+        public List<int> GetTopRatedMovies(int amount)
+        {
+            return RatingsRepository.GetAllMovieRatings()
+                .GroupBy(r => r.Movie)
+                .Select(grp => new
+                {
+                    Movie = grp.Key,
+                    GradeAvg = grp.Average(x => x.Grade)
+                })
+                .OrderByDescending(grp => grp.GradeAvg)
+                .OrderByDescending(grp => grp.GradeAvg)
+                .Select(grp => grp.Movie)
+                .Take(amount)
+                .ToList();
+        }
+        
+        public List<int> GetTopMoviesByReviewer()
+        {
+
+            var topmoviereviewer = RatingsRepository.GetAllMovieRatings()
+                .Where(r => r.Movie == 5)
+                .GroupBy(r => r.Reviewer)
+                .Select(group => new
+                {
+                    Movie = group.Key,
+                    MovieReviewer5 = group.Count()
+                });
+
+            var max5 = topmoviereviewer.Max(grp => grp.MovieReviewer5);
+
+            return topmoviereviewer
+                .Where(grp => grp.MovieReviewer5 == max5)
+                .Select(grp => grp.Movie)
+                .ToList();
+
+            
+        }
+        /*
+        public List<int> GetReviewersByMovie()
+        {
+
+        }
+        */
     }
 }
