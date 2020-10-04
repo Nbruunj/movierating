@@ -185,10 +185,16 @@ namespace MovieRatingsApplication.Core.Services
                 .ToList();
         }
         
-        public List<int> GetTopMoviesByReviewer()
+        public List<int> GetTopMoviesByReviewer(int reviewer)
         {
+            return RatingsRepository.GetAllMovieRatings()
+                .Where(r => r.Reviewer == reviewer)
+                .OrderByDescending(r => r.Grade)
+                .OrderByDescending(r => r.Date)
+                .Select(r => r.Movie)
+                .ToList();
 
-            var topmoviereviewer = RatingsRepository.GetAllMovieRatings()
+            /* var topmoviereviewer = RatingsRepository.GetAllMovieRatings()
                 .Where(r => r.Movie == 5)
                 .GroupBy(r => r.Reviewer)
                 .Select(group => new
@@ -203,14 +209,19 @@ namespace MovieRatingsApplication.Core.Services
                 .Where(grp => grp.MovieReviewer5 == max5)
                 .Select(grp => grp.Movie)
                 .ToList();
-
+            */
             
         }
-        /*
-        public List<int> GetReviewersByMovie()
+        
+        public List<int> GetReviewersByMovie(int movie)
         {
-
+            return RatingsRepository.GetAllMovieRatings()
+                .Where(r => r.Movie == movie)
+                .OrderByDescending(r => r.Grade)
+                .OrderByDescending(r => r.Date)
+                .Select(r => r.Reviewer)
+                .ToList();
         }
-        */
+        
     }
 }

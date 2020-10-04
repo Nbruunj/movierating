@@ -318,62 +318,59 @@ namespace XUnitTestProject
 
             Assert.Equal(new List<int>(expected), result);
         }
+
+        [Theory]
+        [InlineData(2, new int[] { 1 })]
+        [InlineData(3, new int[] { 2, 1 })]
+        [InlineData(4, new int[] { 1 })]
         
-        [Fact]
-        public void GetTopMoviesByReviewer()
+        public void GetTopMoviesByReviewer(int reviewer, int[] expected)
         {
             ratings = new List<MovieRating>()
             {
-                new MovieRating(1, 1, 5, DateTime.Now),
-                new MovieRating(1, 2, 5, DateTime.Now),
+                new MovieRating(2, 1, 3, DateTime.Now),
+                new MovieRating(3, 1, 4, DateTime.Now),
 
-                new MovieRating(2, 1, 4, DateTime.Now),
-                new MovieRating(2, 2, 5, DateTime.Now),
+                new MovieRating(3, 2, 4, DateTime.Now),
+                new MovieRating(4, 1, 4, DateTime.Now),
 
-                new MovieRating(2, 3, 5, DateTime.Now),
-                new MovieRating(3, 3, 5, DateTime.Now),
             };
 
             MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
-
-            List<int> expected = new List<int>() { 2, 3 };
-
+            
             // act
-            var result = mrs.GetTopMoviesByReviewer();
+            var result = mrs.GetTopMoviesByReviewer(reviewer);
 
             // assert
             Assert.Equal(expected, result);
             repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
 
         }
-        /*
-        [Fact]
-        public void GetReviewersByMovie()
+
+        [Theory]
+        [InlineData(2, new int[] {1})]
+        [InlineData(3, new int[] {2, 1})]
+        [InlineData(4, new int[] {1})]
+        public void GetReviewersByMovie(int movie, int[] expected)
         {
             ratings = new List<MovieRating>()
             {
-                new MovieRating(1, 1, 5, DateTime.Now),
-                new MovieRating(1, 2, 5, DateTime.Now),
+                new MovieRating(2, 1, 3, DateTime.Now),
+                new MovieRating(3, 1, 4, DateTime.Now),
 
-                new MovieRating(2, 1, 4, DateTime.Now),
-                new MovieRating(2, 2, 5, DateTime.Now),
+                new MovieRating(3, 2, 4, DateTime.Now),
+                new MovieRating(4, 1, 4, DateTime.Now),
 
-                new MovieRating(2, 3, 5, DateTime.Now),
-                new MovieRating(3, 3, 5, DateTime.Now),
             };
 
             MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
 
-            List<int> expected = new List<int>() { 2, 3 };
-
             // act
-            var result = mrs.GetReviewersByMovie();
+            var result = mrs.GetTopMoviesByReviewer(movie);
 
             // assert
             Assert.Equal(expected, result);
             repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
-
         }
-        */
     }
 }
