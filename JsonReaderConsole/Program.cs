@@ -1,10 +1,11 @@
-﻿using System;
-using Comp1.Core.Interfaces;
-using MovieRatingsApplication.InfraStructure;
+﻿
+using MovieRatingsApplication.Interfaces;
+using MovieRatingsJSONRepository;
+using System;
 
 namespace JsonReaderConsole
 {
-    class Program
+    public class Program
     {
         const string JSÒN_FILE_NAME = @"C:\Users\nbruu\Desktop\ratings.json";
         static void Main(string[] args)

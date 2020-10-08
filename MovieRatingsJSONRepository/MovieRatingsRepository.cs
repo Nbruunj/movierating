@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using MovieRatingsApplication.Interfaces;
+using MovieRatingsApplication.Model;
 using Newtonsoft.Json;
-using System.Text;
-using Comp1.Core.Interfaces;
-using Comp1.Core.Model;
 
-
-namespace MovieRatingsApplication.InfraStructure
+namespace MovieRatingsJSONRepository
 {
     public class MovieRatingsRepository : IMovieRatingsRepository
     {

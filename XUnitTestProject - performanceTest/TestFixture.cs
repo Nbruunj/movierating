@@ -1,7 +1,8 @@
-﻿using Comp1.Core.Interfaces;
+﻿
 using System;
 using System.Linq;
-using MovieRatingsApplication.InfraStructure;
+using MovieRatingsApplication.Interfaces;
+using MovieRatingsJSONRepository;
 
 namespace XUnitTestProject___PerformanceTest
 {

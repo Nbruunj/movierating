@@ -5,8 +5,6 @@ namespace MovieRatingsApplication.Core.Interfaces
 {
     public interface IMovieRatingsRepository
     {
-        MovieRating[] Ratings { get; }
-
-
+        IList<MovieRating> GetAllMovieRatings();
     }
 }

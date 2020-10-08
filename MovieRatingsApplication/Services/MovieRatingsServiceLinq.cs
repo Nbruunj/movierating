@@ -1,13 +1,14 @@
-﻿using Comp1.Core.Interfaces;
-using Comp1.Core.Model;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using System.Threading;
+using MovieRatingsApplication.Interfaces;
+using MovieRatingsApplication.Model;
 
-namespace Comp1.Core.Services
+namespace MovieRatingsApplication.Services
 {
     public class MovieRatingsServiceLinq : IMovieRatingsService
     {

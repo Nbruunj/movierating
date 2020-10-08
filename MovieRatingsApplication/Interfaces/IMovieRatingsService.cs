@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MovieRatingsApplication.Core.Interfaces
+namespace MovieRatingsApplication.Interfaces
 {
-    interface IMovieRatingsService
+    public interface IMovieRatingsService
     {
         int GetNumberOfReviewsFromReviewer(int reviewer);
         double GetAverageRateFromReviewer(int reviewer);

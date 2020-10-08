@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Comp1.Core.Model
+namespace MovieRatingsApplication.Model
 {
     public class MovieRating
     {

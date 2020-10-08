@@ -1,7 +1,6 @@
-
-using Comp1.Core.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MovieRatingsApplication.InfraStructure;
+using MovieRatingsApplication.Services;
+using MovieRatingsJSONRepository;
 
 
 namespace MSUnitTestProject1

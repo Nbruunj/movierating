@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Comp1.Core.Interfaces;
-using Comp1.Core.Services;
+
+using MovieRatingsApplication.Interfaces;
+using MovieRatingsApplication.Services;
 using Xunit;
 
 namespace XUnitTestProject___PerformanceTest

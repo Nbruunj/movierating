@@ -1,9 +1,10 @@
-﻿using Comp1.Core.Model;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MovieRatingsApplication.Model;
 
-namespace Comp1.Core.Interfaces
+namespace MovieRatingsApplication.Interfaces
 {
     public interface IMovieRatingsRepository
     {

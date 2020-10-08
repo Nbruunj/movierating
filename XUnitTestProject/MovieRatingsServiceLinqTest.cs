@@ -1,11 +1,10 @@
-using Comp1.Core.Interfaces;
-using Comp1.Core.Model;
-using Comp1.Core.Services;
 using FluentAssertions;
 using Moq;
 using System;
 using System.Collections.Generic;
-
+using MovieRatingsApplication.Interfaces;
+using MovieRatingsApplication.Model;
+using MovieRatingsApplication.Services;
 using Xunit;
 
 namespace XUnitTestProject
