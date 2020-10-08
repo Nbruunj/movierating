@@ -1,22 +1,21 @@
+using Comp1.Core.Interfaces;
+using Comp1.Core.Model;
+using Comp1.Core.Services;
 using FluentAssertions;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using Comp1.Core.Interfaces;
-using Comp1.Core.Model;
-using Comp1.Core.Services;
+
 using Xunit;
 
 namespace XUnitTestProject
 {
-    public class MovieRatingsServiceTest
+    public class MovieRatingsServiceLinqTest
     {
         private MovieRating[] ratings = null;
         private readonly Mock<IMovieRatingsRepository> repoMock = null;
 
-        public MovieRatingsServiceTest()
+        public MovieRatingsServiceLinqTest()
         {
             repoMock = new Mock<IMovieRatingsRepository>();
             repoMock.Setup(repo => repo.Ratings).Returns(() => ratings);
@@ -25,16 +24,16 @@ namespace XUnitTestProject
         [Fact]
         public void CreateMovieRatingsService()
         {
-            var mrs = new MovieRatingsService(repoMock.Object);
+            var mrs = new MovieRatingsServiceLinq(repoMock.Object);
             mrs.Should().NotBeNull();
         }
 
         [Fact]
         public void CreateMovieRatingsServiceMovieRatingsRepositoryIsNullExpectArgumentException()
         {
-            MovieRatingsService mrs = null;
+            IMovieRatingsService mrs = null;
 
-            Action ac = () => mrs = new MovieRatingsService(null);
+            Action ac = () => mrs = new MovieRatingsServiceLinq(null);
 
             ac.Should().Throw<ArgumentException>().WithMessage("Missing MovieRatings repository");
             mrs.Should().BeNull();
@@ -54,7 +53,7 @@ namespace XUnitTestProject
                 new MovieRating(3, 1, 3, DateTime.Now),
                 new MovieRating(3, 2, 4, DateTime.Now)
             };
-            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            IMovieRatingsService mrs = new MovieRatingsServiceLinq(repoMock.Object);
 
             var result = mrs.GetNumberOfReviewsFromReviewer(movie);
 
@@ -74,7 +73,7 @@ namespace XUnitTestProject
                 new MovieRating(3, 1, 3, DateTime.Now),
                 new MovieRating(3, 2, 4, DateTime.Now)
             };
-            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            IMovieRatingsService mrs = new MovieRatingsServiceLinq(repoMock.Object);
 
             var result = mrs.GetAverageRateFromReviewer(reviewer);
 
@@ -91,7 +90,7 @@ namespace XUnitTestProject
                 new MovieRating(3, 1, 3, DateTime.Now),
                 new MovieRating(3, 2, 4, DateTime.Now)
             };
-            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            IMovieRatingsService mrs = new MovieRatingsServiceLinq(repoMock.Object);
 
             Action ac = () => mrs.GetAverageRateFromReviewer(reviewer);
 
@@ -113,7 +112,7 @@ namespace XUnitTestProject
                 new MovieRating(2, 2, 4, DateTime.Now),
                 new MovieRating(2, 3, 4, DateTime.Now)
             };
-            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            IMovieRatingsService mrs = new MovieRatingsServiceLinq(repoMock.Object);
 
             var result = mrs.GetNumberOfRatesByReviewer(reviewer, rate);
 
@@ -134,7 +133,7 @@ namespace XUnitTestProject
                 new MovieRating(2, 3, 3, DateTime.Now),
                 new MovieRating(3, 3, 4, DateTime.Now)
             };
-            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            IMovieRatingsService mrs = new MovieRatingsServiceLinq(repoMock.Object);
 
             var result = mrs.GetNumberOfReviews(movie);
 
@@ -153,7 +152,7 @@ namespace XUnitTestProject
                 new MovieRating(2, 3, 3, DateTime.Now),
                 new MovieRating(2, 3, 4, DateTime.Now)
             };
-            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            IMovieRatingsService mrs = new MovieRatingsServiceLinq(repoMock.Object);
 
             var result = mrs.GetAverageRateOfMovie(movie);
 
@@ -170,7 +169,7 @@ namespace XUnitTestProject
                 new MovieRating(3, 1, 3, DateTime.Now),
                 new MovieRating(3, 3, 4, DateTime.Now)
             };
-            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            IMovieRatingsService mrs = new MovieRatingsServiceLinq(repoMock.Object);
 
             Action ac = () => mrs.GetAverageRateOfMovie(movie);
 
@@ -191,7 +190,7 @@ namespace XUnitTestProject
                 new MovieRating(2, 2, 4, DateTime.Now),
                 new MovieRating(3, 2, 4, DateTime.Now)
             };
-            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            IMovieRatingsService mrs = new MovieRatingsServiceLinq(repoMock.Object);
 
             var result = mrs.GetNumberOfRates(movie, rate);
 
@@ -214,7 +213,7 @@ namespace XUnitTestProject
                 new MovieRating(3, 4, 5, DateTime.Now),
                 new MovieRating(3, 4, 5, DateTime.Now),
             };
-            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            IMovieRatingsService mrs = new MovieRatingsServiceLinq(repoMock.Object);
 
             List<int> expected = new List<int>() { 3, 4 };
 
@@ -237,7 +236,7 @@ namespace XUnitTestProject
                 new MovieRating(3, 3, 1, DateTime.Now),
             };
 
-            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            IMovieRatingsService mrs = new MovieRatingsServiceLinq(repoMock.Object);
 
             var expected = new List<int>() { 1, 3 };
 
@@ -267,11 +266,13 @@ namespace XUnitTestProject
                 new MovieRating(3, 4, 5, DateTime.Now)
             };
 
-            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            var topMovies = new List<int>() { 4, 1, 2, 3 };
+        
+            IMovieRatingsService mrs = new MovieRatingsServiceLinq(repoMock.Object);
 
             var result = mrs.GetTopRatedMovies(n);
 
-            Assert.Equal(expected.ToList(), result);
+            Assert.Equal(expected, result);
         }
 
         //  10. On input N, what are the movies that reviewer N has reviewed? 
@@ -298,7 +299,7 @@ namespace XUnitTestProject
                 new MovieRating(3, 3, 4, new DateTime(2020, 1, 1))
             };
 
-            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            IMovieRatingsService mrs = new MovieRatingsServiceLinq(repoMock.Object);
 
             var result = mrs.GetTopMoviesByReviewer(reviewer);
 
@@ -329,7 +330,7 @@ namespace XUnitTestProject
                 new MovieRating(3, 3, 4, new DateTime(2020, 1, 1))
             };
 
-            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            IMovieRatingsService mrs = new MovieRatingsServiceLinq(repoMock.Object);
 
             var result = mrs.GetReviewersByMovie(movie);
 
