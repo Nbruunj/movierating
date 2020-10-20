@@ -11,7 +11,7 @@ namespace MSUnitTestProject
     {
         const int TIMEOUT_IN_MILLIS = 4_000;
 
-        const string JSÒN_FILE_NAME = @"C:\Users\bhp\source\repos\PP\2020E\Compulsory\ratings.json";
+        const string JSÒN_FILE_NAME = @"C:\Users\nbruu\Desktop\ratings.json";
 
         private static IMovieRatingsRepository repository;
 

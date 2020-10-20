@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-
 using MovieRatingsApplication.Interfaces;
 using MovieRatingsApplication.Model;
 using MovieRatingsApplication.Services;
