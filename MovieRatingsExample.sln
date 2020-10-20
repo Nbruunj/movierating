@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSUnitTestProject1", "MSUni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestProject - performanceTest", "XUnitTestProject - performanceTest\XUnitTestProject - performanceTest.csproj", "{56ED0769-F790-4C18-9E84-43937B745FDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRatingsApplication", "MovieRatingsApplication\MovieRatingsApplication.csproj", "{82F700A8-9195-40E8-BF2A-F26509A0C938}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRatingsApplication", "MovieRatingsApplication\MovieRatingsApplication.csproj", "{82F700A8-9195-40E8-BF2A-F26509A0C938}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonReaderConsole", "JsonReaderConsole\JsonReaderConsole.csproj", "{6E1883EB-839D-4AAA-B3E5-E3AB356AD9F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonReaderConsole", "JsonReaderConsole\JsonReaderConsole.csproj", "{6E1883EB-839D-4AAA-B3E5-E3AB356AD9F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSUnitTestProject", "MSUnitTestProject\MSUnitTestProject.csproj", "{CA054B0B-6F14-419B-BFD2-BEEEC4C953AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{6E1883EB-839D-4AAA-B3E5-E3AB356AD9F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E1883EB-839D-4AAA-B3E5-E3AB356AD9F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E1883EB-839D-4AAA-B3E5-E3AB356AD9F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA054B0B-6F14-419B-BFD2-BEEEC4C953AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA054B0B-6F14-419B-BFD2-BEEEC4C953AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA054B0B-6F14-419B-BFD2-BEEEC4C953AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA054B0B-6F14-419B-BFD2-BEEEC4C953AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{20D55DD0-F7C4-4FD2-AE66-71BB7F15FBF4} = {EF5EF519-1610-4393-86EE-ECC36EE9441B}
 		{56ED0769-F790-4C18-9E84-43937B745FDA} = {EF5EF519-1610-4393-86EE-ECC36EE9441B}
 		{82F700A8-9195-40E8-BF2A-F26509A0C938} = {3DF5597D-1AEB-4623-8044-57331D2BFDCC}
+		{CA054B0B-6F14-419B-BFD2-BEEEC4C953AA} = {EF5EF519-1610-4393-86EE-ECC36EE9441B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B19A6169-75F1-4527-BADD-5F681136F00E}
